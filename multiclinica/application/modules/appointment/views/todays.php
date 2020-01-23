@@ -55,8 +55,8 @@
                                     <td ><?php echo $appointment->id; ?></td>
                                     <td> <?php echo $this->db->get_where('patient', array('id' => $appointment->patient))->row()->name; ?></td>
                                     <td><?php
-                                        if (!empty($appointment->doctor)) {
-                                            echo $this->db->get_where('doctor', array('id' => $appointment->doctor))->row()->name;
+                                        if (!empty($appointment->esteticista)) {
+                                            echo $this->db->get_where('esteticista', array('id' => $appointment->esteticista))->row()->name;
                                         }
                                         ?></td>
                                     <td class="center"><?php echo date('d-m-Y', $appointment->date); ?> <strong> <?php echo $appointment->s_time; ?> - <?php echo $appointment->e_time; ?> </strong></td>
@@ -196,16 +196,16 @@
                             <label for="exampleInputEmail1">  <?php echo lang('esteticista'); ?></label>
                         </div>
                         <div class="col-md-9"> 
-                            <select class="form-control m-bot15 js-example-basic-single" name="doctor" value=''>  
+                            <select class="form-control m-bot15 js-example-basic-single" name="esteticista" value=''>  
                                 <option value="">Select .....</option>
-                                <?php foreach ($doctors as $doctor) { ?>
-                                    <option value="<?php echo $doctor->id; ?>"<?php
-                                    if (!empty($payment->doctor)) {
-                                        if ($payment->doctor == $doctor->id) {
+                                <?php foreach ($esteticista as $esteticistas) { ?>
+                                    <option value="<?php echo $esteticistas->id; ?>"<?php
+                                    if (!empty($payment->esteticistas)) {
+                                        if ($payment->esteticista == $esteticistas->id) {
                                             echo 'selected';
                                         }
                                     }
-                                    ?>><?php echo $doctor->name; ?> </option>
+                                    ?>><?php echo $esteticistas->name; ?> </option>
                                         <?php } ?>
                             </select>
                         </div>
@@ -414,16 +414,16 @@
                             <label for="exampleInputEmail1">  <?php echo lang('esteticista'); ?></label>
                         </div>
                         <div class="col-md-9"> 
-                            <select class="form-control m-bot15 js-example-basic-single doctor" name="doctor" value=''>  
+                            <select class="form-control m-bot15 js-example-basic-single esteticista" name="esteticista" value=''>  
                                 <option value="">Select .....</option>
-                                <?php foreach ($doctors as $doctor) { ?>
-                                    <option value="<?php echo $doctor->id; ?>"<?php
-                                    if (!empty($payment->doctor)) {
-                                        if ($payment->doctor == $doctor->id) {
+                                <?php foreach ($esteticista as $esteticistas) { ?>
+                                    <option value="<?php echo $esteticistas->id; ?>"<?php
+                                    if (!empty($payment->esteticista)) {
+                                        if ($payment->esteticista == $esteticistas->id) {
                                             echo 'selected';
                                         }
                                     }
-                                    ?>><?php echo $doctor->name; ?> </option>
+                                    ?>><?php echo $esteticistas->name; ?> </option>
                                         <?php } ?>
                             </select>
                         </div>
@@ -560,14 +560,14 @@
                                                         // Populate the form fields with the data returned from server
                                                         $('#editAppointmentForm').find('[name="id"]').val(response.appointment.id).end()
                                                         $('#editAppointmentForm').find('[name="patient"]').val(response.appointment.patient).end()
-                                                        $('#editAppointmentForm').find('[name="doctor"]').val(response.appointment.doctor).end()
+                                                        $('#editAppointmentForm').find('[name="esteticista"]').val(response.appointment.esteticista).end()
                                                         $('#editAppointmentForm').find('[name="date"]').val(da).end()
                                                         $('#editAppointmentForm').find('[name="s_time"]').val(response.appointment.s_time).end()
                                                         $('#editAppointmentForm').find('[name="e_time"]').val(response.appointment.e_time).end()
                                                         $('#editAppointmentForm').find('[name="status"]').val(response.appointment.status).end()
                                                         $('#editAppointmentForm').find('[name="remarks"]').val(response.appointment.remarks).end()
 
-                                                        $('.js-example-basic-single.doctor').val(response.appointment.doctor).trigger('change');
+                                                        $('.js-example-basic-single.esteticista').val(response.appointment.esteticista).trigger('change');
                                                         $('.js-example-basic-single.patient').val(response.appointment.patient).trigger('change');
                                                     });
                                                 });

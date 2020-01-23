@@ -398,7 +398,7 @@
                                 $('#editPatientForm').find('[name="bloodgroup"]').val(response.patient.bloodgroup).end()
                                 $('#editPatientForm').find('[name="p_id"]').val(response.patient.patient_id).end()
 
-                                $('.js-example-basic-single.esteticista').val(response.patient.esteticista).trigger('change');
+                                $('.js-example-basic-single').val(response.patient.esteticista).trigger('change');
                         });
                     });</script>
 

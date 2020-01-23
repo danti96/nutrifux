@@ -19,7 +19,7 @@
                 <aside class="profile-info col-lg-9">
                     <section class="panel">
                         <div class="bio-graph-heading">
-                            Doctor : <?php echo $patient->doctor; ?>
+                            Esteticista : <?php echo $this->esteticista_model->getEsteticistaById($patient->esteticista)->name; ?>
                         </div>
                         <div class="bio-graph-info">
                             <h1>Bio Graph</h1>
@@ -51,9 +51,9 @@
 
                                 <div class="bio-row">
                                     <p>
-                                        <span>Doctor </span>:
+                                        <span>Esteticista </span>:
                                         <?php
-                                        echo $this->esteticista_model->getDoctorById($patient->doctor)->name;
+                                        echo $this->esteticista_model->getEsteticistaById($patient->esteticista)->name;
                                         ?>
                                     </p>
                                 </div>

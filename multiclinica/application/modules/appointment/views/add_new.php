@@ -145,16 +145,16 @@
                                                 <label for="exampleInputEmail1">  <?php echo lang('esteticista'); ?></label>
                                             </div>
                                             <div class="col-md-9"> 
-                                                <select class="form-control m-bot15 js-example-basic-single" name="doctor" value=''>  
+                                                <select class="form-control m-bot15 js-example-basic-single" name="esteticista" value=''>  
                                                     <option value="">Select .....</option>
-                                                    <?php foreach ($doctors as $doctor) { ?>
-                                                        <option value="<?php echo $doctor->id; ?>"<?php
-                                                        if (!empty($payment->doctor)) {
-                                                            if ($payment->doctor == $doctor->id) {
+                                                    <?php foreach ($esteticista as $esteticistas) { ?>
+                                                        <option value="<?php echo $esteticistas->id; ?>"<?php
+                                                        if (!empty($payment->esteticista)) {
+                                                            if ($payment->esteticista == $esteticistas->id) {
                                                                 echo 'selected';
                                                             }
                                                         }
-                                                        ?>><?php echo $doctor->name; ?> </option>
+                                                        ?>><?php echo $esteticistas->name; ?> </option>
                                                             <?php } ?>
                                                 </select>
                                             </div>

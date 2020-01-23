@@ -109,7 +109,7 @@ class Appointment extends MX_Controller {
     public function addNew() {
         $id = $this->input->post('id');
         $patient = $this->input->post('patient');
-        $esteticista = $this->input->post('doctor');
+        $esteticista = $this->input->post('esteticista');
         $date = $this->input->post('date');
         if (!empty($date)) {
             $date = strtotime($date);
@@ -153,7 +153,7 @@ class Appointment extends MX_Controller {
         // Validating Name Field
         $this->form_validation->set_rules('patient', 'Patient', 'trim|required|min_length[1]|max_length[100]|xss_clean');
         // Validating Password Field
-        $this->form_validation->set_rules('doctor', 'Doctor', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('esteticista', 'Esteticista', 'trim|required|min_length[1]|max_length[100]|xss_clean');
 
         // Validating Email Field
         $this->form_validation->set_rules('date', 'Date', 'trim|required|min_length[1]|max_length[100]|xss_clean');
@@ -192,8 +192,25 @@ class Appointment extends MX_Controller {
                 $username = $this->input->post('p_name');
                 // Adding New Patient
                 if ($this->ion_auth->email_check($p_email)) {
-                    $this->session->set_flashdata('feedback', 'Email Address of Patient Is Already Registered');
+                    $this->session->set_flashdata('feedback', 'La dirección de correo electrónico del paciente ya está registrada');
                 } else {
+                    //registramos los datos en la tabla users
+                    $dfg = 5;
+                    //registro en la tabla de users 
+                    $this->ion_auth->register($username, $password, $p_email, $dfg);
+                    //consulta el id de la tabla users
+                    $ion_user_id = $this->db->get_where('users', array('email' => $p_email))->row()->id;
+                    //agregamos la ion_user_id en el array $data
+                    $data['ion_user_id'] =  $ion_user_id;
+                    //agregamos en la tabla patient
+                    $this->patient_model->insertPatient($data);
+
+                    //$this->patient_model->insertPatient($data);
+                    $patient_user_id = $this->db->get_where('patient', array('email' => $p_email))->row()->id;
+                    //$id_info = array('ion_user_id' => $ion_user_id);
+                    //$this->patient_model->updatePatient($patient_user_id, $id_info);
+
+
                     $dfg = 5;
                     $this->ion_auth->register($username, $password, $p_email, $dfg);
                     $ion_user_id = $this->db->get_where('users', array('email' => $p_email))->row()->id;
@@ -210,7 +227,7 @@ class Appointment extends MX_Controller {
             $data = array();
             $data = array(
                 'patient' => $patient,
-                'doctor' => $esteticista,
+                'esteticista' => $esteticista,
                 'date' => $date,
                 's_time' => $s_time,
                 'e_time' => $e_time,
@@ -228,17 +245,17 @@ class Appointment extends MX_Controller {
                     $this->sms->sendSmsDuringAppointment($patient, $esteticista, $date, $s_time, $e_time);
                 }
 
-                $patient_doctor = $this->patient_model->getPatientById($patient)->doctor;
+                $patient_esteticista = $this->patient_model->getPatientById($patient)->esteticista;
 
-                $patient_doctors = explode(',', $patient_doctor);
+                $patient_esteticistas = explode(',', $patient_esteticista);
 
 
 
-                if (!in_array($esteticista, $patient_doctors)) {
-                    $patient_doctors[] = $esteticista;
-                    $esteticistass = implode(',', $patient_doctors);
+                if (!in_array($esteticista, $patient_esteticistas)) {
+                    $patient_esteticistas[] = $esteticista;
+                    $esteticistas = implode(',', $patient_esteticistas);
                     $data_d = array();
-                    $data_d = array('doctor' => $esteticistass);
+                    $data_d = array('esteticista' => $esteticistas);
                     $this->patient_model->updatePatient($patient, $data_d);
                 }
                 $this->session->set_flashdata('feedback', 'Added');
@@ -573,7 +590,7 @@ class Appointment extends MX_Controller {
 
         foreach ($query as $entry) {
             
-            $esteticista = $this->esteticista_model->getEsteticistaById($entry->Esteticista);
+            $esteticista = $this->esteticista_model->getEsteticistaById($entry->esteticista);
             if(!empty($esteticista)){
                 $esteticista = $esteticista->name;
             }else{

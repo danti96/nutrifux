@@ -395,7 +395,7 @@
                         <?php } ?>
 
  
-
+                    <!--
                         <?php if ($this->ion_auth->in_group(array('admin', 'Doctor', 'Laboratorist'))) { ?>
                             <li class="sub-menu">
                                 <a href="javascript:;" >
@@ -408,7 +408,7 @@
                                 </ul>
                             </li>
                         <?php } ?>
-
+                    -->
 
 
 
@@ -453,6 +453,7 @@
                                 </ul>
                             </li>
                         <?php } ?>
+                     <!--
                         <?php if ($this->ion_auth->in_group(array('admin'))) { ?>
                             <li class="sub-menu">
                                 <a href="javascript:;" >
@@ -468,6 +469,7 @@
                                 </ul>
                             </li> 
                         <?php } ?>
+                        -->
                         <?php if ($this->ion_auth->in_group(array('admin'))) { ?>
 
                             <li> <li class="sub-menu">

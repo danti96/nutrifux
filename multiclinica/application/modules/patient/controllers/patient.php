@@ -62,7 +62,7 @@ class Patient extends MX_Controller {
         $name = $this->input->post('name');
         $password = $this->input->post('password');
         $sms = $this->input->post('sms');
-        $esteticista = $this->input->post(' ');
+        $esteticista = $this->input->post('esteticista');
         $address = $this->input->post('address');
         $phone = $this->input->post('phone');
         $sex = $this->input->post('sex');
@@ -188,23 +188,28 @@ class Patient extends MX_Controller {
 
             if (empty($id)) {     // Adding New Patient
                 if ($this->ion_auth->email_check($email)) {
-                    $this->session->set_flashdata('feedback', 'This Email Address Is Already Registered');
+                    $this->session->set_flashdata('feedback', 'zz');
                     redirect('patient/addNewView');
                 } else {
+                    //registramos los datos en la tabla users
                     $dfg = 5;
+                    //registro en la tabla de users 
                     $this->ion_auth->register($username, $password, $email, $dfg);
+                    //consulta el id de la tabla users
                     $ion_user_id = $this->db->get_where('users', array('email' => $email))->row()->id;
+                    //agregamos la ion_user_id en el array $data
+                    $data['ion_user_id'] =  $ion_user_id;
+                    //agregamos en la tabla patient
                     $this->patient_model->insertPatient($data);
-                    $patient_user_id = $this->db->get_where('patient', array('email' => $email))->row()->id;
-                    $id_info = array('ion_user_id' => $ion_user_id);
-                    $this->patient_model->updatePatient($patient_user_id, $id_info);
 
-                    if (!empty($sms)) {
-                        $this->sms->sendSmsDuringPatientRegistration($patient_user_id);
-                    }
+                    //$this->patient_model->insertPatient($data);
+                    //$patient_user_id = $this->db->get_where('patient', array('email' => $email))->row()->id;
+                    //$id_info = array('ion_user_id' => $ion_user_id);
+                    //$this->patient_model->updatePatient($patient_user_id, $id_info);
 
-
-
+                    //if (!empty($sms)) {
+                    //    $this->sms->sendSmsDuringPatientRegistration($patient_user_id);
+                    //}
 
                     $this->session->set_flashdata('feedback', 'Added');
                 }

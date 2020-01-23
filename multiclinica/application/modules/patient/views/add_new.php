@@ -33,14 +33,14 @@
                                             </div>
                                             <div class=""> 
                                                 <select class="form-control m-bot15 js-example-basic-single" name="doctor" value=''> 
-                                                    <?php foreach ($doctors as $doctor) { ?>
-                                                        <option value="<?php echo $doctor->id; ?>" <?php
-                                                        if (!empty($patient->doctor)) {
-                                                            if ($patient->doctor == $doctor->id) {
+                                                    <?php foreach ($esteticista as $esteticistas) { ?>
+                                                        <option value="<?php echo $esteticistas->id; ?>" <?php
+                                                        if (!empty($patient->esteticista)) {
+                                                            if ($patient->esteticista == $esteticistas->id) {
                                                                 echo 'selected';
                                                             }
                                                         }
-                                                        ?> ><?php echo $doctor->name; ?> </option>
+                                                        ?> ><?php echo $esteticistas->name; ?> </option>
                                                             <?php } ?>
                                                 </select>
                                             </div>
