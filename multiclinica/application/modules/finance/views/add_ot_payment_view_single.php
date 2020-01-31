@@ -33,16 +33,16 @@
                                                 <label for="exampleInputEmail1"><?php echo lang('consultant_surgeon'); ?></label>
                                             </div>
                                             <div class="col-md-9"> 
-                                                <select class="form-control m-bot15" name="doctor_c_s" value=''>  
+                                                <select class="form-control m-bot15" name="esteticista_c_s" value=''>  
                                                     <option value="None">Select</option>
-                                                    <?php foreach ($doctors as $doctor) { ?>
-                                                        <option value="<?php echo $doctor->id; ?>"<?php
-                                                        if (!empty($ot_payment->doctor_c_s)) {
-                                                            if ($ot_payment->doctor_c_s == $doctor->id) {
+                                                    <?php foreach ($esteticista as $esteticistas) { ?>
+                                                        <option value="<?php echo $esteticistas->id; ?>"<?php
+                                                        if (!empty($ot_payment->esteticista_c_s)) {
+                                                            if ($ot_payment->esteticista_c_s == $esteticistas->id) {
                                                                 echo 'selected';
                                                             }
                                                         }
-                                                        ?>><?php echo $doctor->name; ?> </option>
+                                                        ?>><?php echo $esteticistas->name; ?> </option>
                                                             <?php } ?>
                                                 </select>
                                             </div>
@@ -52,16 +52,16 @@
                                                 <label for="exampleInputEmail1"><?php echo lang('assistant_surgeon'); ?> (1) </label>
                                             </div>
                                             <div class="col-md-9"> 
-                                                <select class="form-control m-bot15" name="doctor_a_s_1" value=''>  
+                                                <select class="form-control m-bot15" name="esteticistas_a_s_1" value=''>  
                                                     <option value="None">Select</option>
-                                                    <?php foreach ($doctors as $doctor) { ?>
-                                                        <option value="<?php echo $doctor->id; ?>"<?php
-                                                        if (!empty($ot_payment->doctor_a_s_1)) {
-                                                            if ($ot_payment->doctor_a_s_1 == $doctor->id) {
+                                                    <?php foreach ($esteticista as $esteticistas) { ?>
+                                                        <option value="<?php echo $esteticistas->id; ?>"<?php
+                                                        if (!empty($ot_payment->esteticistas_a_s_1)) {
+                                                            if ($ot_payment->esteticistas_a_s_1 == $esteticistas->id) {
                                                                 echo 'selected';
                                                             }
                                                         }
-                                                        ?>><?php echo $doctor->name; ?> </option>
+                                                        ?>><?php echo $esteticistas->name; ?> </option>
                                                             <?php } ?>
                                                 </select>
                                             </div>
@@ -71,16 +71,16 @@
                                                 <label for="exampleInputEmail1"><?php echo lang('assistant_surgeon'); ?> (2) </label>
                                             </div>
                                             <div class="col-md-9"> 
-                                                <select class="form-control m-bot15" name="doctor_a_s_2" value=''>  
+                                                <select class="form-control m-bot15" name="esteticistas_a_s_2" value=''>  
                                                     <option value="None">Select</option>
-                                                    <?php foreach ($doctors as $doctor) { ?>
-                                                        <option value="<?php echo $doctor->id; ?>"<?php
-                                                        if (!empty($ot_payment->doctor_a_s_2)) {
-                                                            if ($ot_payment->doctor_a_s_2 == $doctor->id) {
+                                                    <?php foreach ($esteticista as $esteticistas) { ?>
+                                                        <option value="<?php echo $esteticistas->id; ?>"<?php
+                                                        if (!empty($ot_payment->esteticistas_a_s_2)) {
+                                                            if ($ot_payment->esteticistas_a_s_2 == $esteticistas->id) {
                                                                 echo 'selected';
                                                             }
                                                         }
-                                                        ?>><?php echo $doctor->name; ?> </option>
+                                                        ?>><?php echo $esteticistas->name; ?> </option>
                                                             <?php } ?>
                                                 </select>
                                             </div>
@@ -90,16 +90,16 @@
                                                 <label for="exampleInputEmail1"><?php echo lang('anaestheasist'); ?></label>
                                             </div>
                                             <div class="col-md-9"> 
-                                                <select class="form-control m-bot15" name="doctor_anaes" value=''>  
+                                                <select class="form-control m-bot15" name="esteticistas_anaes" value=''>  
                                                     <option value="None">Select</option>
-                                                    <?php foreach ($doctors as $doctor) { ?>
-                                                        <option value="<?php echo $doctor->id; ?>"<?php
-                                                        if (!empty($ot_payment->doctor_anaes)) {
-                                                            if ($ot_payment->doctor_anaes == $doctor->id) {
+                                                    <?php foreach ($esteticista as $esteticistas) { ?>
+                                                        <option value="<?php echo $esteticistas->id; ?>"<?php
+                                                        if (!empty($ot_payment->esteticistas_anaes)) {
+                                                            if ($ot_payment->esteticistas_anaes == $esteticistas->id) {
                                                                 echo 'selected';
                                                             }
                                                         }
-                                                        ?>><?php echo $doctor->name; ?> </option>
+                                                        ?>><?php echo $esteticistas->name; ?> </option>
                                                             <?php } ?>
                                                 </select>
                                             </div>

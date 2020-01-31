@@ -140,26 +140,26 @@
 
                                             <div class="col-md-8 payment pad_bot">
                                                 <div class="col-md-3 payment_label"> 
-                                                    <label for="exampleInputEmail1"> <?php echo lang('refd_by_doctor'); ?></label>
+                                                    <label for="exampleInputEmail1"> <?php echo lang('refd_by_esteticista'); ?></label>
                                                 </div>
                                                 <div class="col-md-9"> 
-                                                    <select class="form-control m-bot15 js-example-basic-single add_doctor" id="add_doctor" name="doctor" value=''>  
+                                                    <select class="form-control m-bot15 js-example-basic-single add_esteticista" id="add_esteticista" name="esteticista" value=''>  
                                                         <option value="">Select .....</option>
                                                         <option value="add_new" style="color: #41cac0 !important;"><?php echo lang('add_new'); ?></option>
-                                                        <?php foreach ($doctors as $doctor) { ?>
-                                                            <option value="<?php echo $doctor->id; ?>"<?php
-                                                            if (!empty($payment->doctor)) {
-                                                                if ($payment->doctor == $doctor->id) {
+                                                        <?php foreach ($esteticista as $esteticistas) { ?>
+                                                            <option value="<?php echo $esteticistas->id; ?>"<?php
+                                                            if (!empty($payment->esteticistas)) {
+                                                                if ($payment->esteticista == $esteticistas->id) {
                                                                     echo 'selected';
                                                                 }
                                                             }
-                                                            ?>><?php echo $doctor->name; ?> </option>
+                                                            ?>><?php echo $esteticistas->name; ?> </option>
                                                                 <?php } ?>
                                                     </select>
                                                 </div>
                                             </div>
 
-                                            <div class="pos_doctor">
+                                            <div class="pos_esteticista">
                                                 <div class="col-md-8 payment pad_bot">
                                                     <div class="col-md-3 payment_label"> 
                                                         <label for="exampleInputEmail1"> <?php echo lang('esteticista'); ?> <?php echo lang('name'); ?></label>
@@ -519,14 +519,14 @@ if ($discount_type == 'flat') {
 
 <script>
     $(document).ready(function () {
-        $('.pos_doctor').hide();
-        $(document.body).on('change', '#add_doctor', function () {
+        $('.pos_esteticista').hide();
+        $(document.body).on('change', '#add_esteticista', function () {
 
-            var v = $("select.add_doctor option:selected").val()
+            var v = $("select.add_esteticista option:selected").val()
             if (v == 'add_new') {
-                $('.pos_doctor').show();
+                $('.pos_esteticista').show();
             } else {
-                $('.pos_doctor').hide();
+                $('.pos_esteticista').hide();
             }
         });
 

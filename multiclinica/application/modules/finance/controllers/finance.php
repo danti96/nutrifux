@@ -12,7 +12,7 @@ class Finance extends MX_Controller {
         $this->load->library('form_validation');
         $this->load->library('upload');
         $this->load->model('finance_model');
-        $this->load->model('doctor/esteticista_model');
+        $this->load->model('esteticista/esteticista_model');
         $language = $this->db->get('settings')->row()->language;
         $this->lang->load('system_syntax', $language);
         $this->load->model('patient/patient_model');
@@ -62,7 +62,7 @@ class Finance extends MX_Controller {
         $data['settings'] = $this->settings_model->getSettings();
         $data['categories'] = $this->finance_model->getPaymentCategory();
         $data['patients'] = $this->patient_model->getPatient();
-        $data['doctors'] = $this->esteticista_model->getDoctor();
+        $data['esteticista'] = $this->esteticista_model->getEsteticista();
         $this->load->view('home/dashboard'); // just the header file
         $this->load->view('add_payment_view', $data);
         $this->load->view('home/footer'); // just the header file
@@ -71,7 +71,7 @@ class Finance extends MX_Controller {
     public function addPayment() {
         $id = $this->input->post('id');
         $category_selected = array();
-// $amount_by_category = $this->input->post('category_amount');
+        // $amount_by_category = $this->input->post('category_amount');
         $category_selected = $this->input->post('category_name');
         $remarks = $this->input->post('remarks');
         $cat_and_price = array();
@@ -205,7 +205,7 @@ class Finance extends MX_Controller {
                 $all_cat_name = explode(',', $category_name);
                 foreach ($all_cat_name as $indiviual_cat_nam) {
                     $indiviual_cat_nam1 = explode('*', $indiviual_cat_nam);
-                    $d_commission = $this->finance_model->getDoctorCommissionByCategory($indiviual_cat_nam1[0])->d_commission;
+                    $d_commission = $this->finance_model->getEsteticistaCommissionByCategory($indiviual_cat_nam1[0])->d_commission;
                     $h_commission = 100 - $d_commission;
                     $hospital_amount_by_category[] = $indiviual_cat_nam1[1] * $h_commission / 100;
                 }
@@ -245,7 +245,7 @@ class Finance extends MX_Controller {
             }
 
             if (!empty($doctor)) {
-                $doctor_details = $this->esteticista_model->getDoctorById($doctor);
+                $doctor_details = $this->esteticista_model->getEsteticistaById($doctor);
                 $doctor_name = $doctor_details->name;
             } else {
                 $doctor_name = 0;
@@ -361,7 +361,7 @@ class Finance extends MX_Controller {
             $data['settings'] = $this->settings_model->getSettings();
             $data['categories'] = $this->finance_model->getPaymentCategory();
             $data['patients'] = $this->patient_model->getPatient();
-            $data['doctors'] = $this->esteticista_model->getDoctor();
+            $data['esteticista'] = $this->esteticista_model->getEsteticista();
             $id = $this->input->get('id');
             $data['payment'] = $this->finance_model->getPaymentById($id);
             $this->load->view('home/dashboard'); // just the header file
@@ -394,7 +394,7 @@ class Finance extends MX_Controller {
 
     public function addOtPaymentView() {
         $data = array();
-        $data['doctors'] = $this->esteticista_model->getDoctor();
+        $data['esteticista'] = $this->esteticista_model->getEsteticista();
         $data['discount_type'] = $this->finance_model->getDiscountType();
         $data['settings'] = $this->settings_model->getSettings();
         $data['categories'] = $this->finance_model->getPaymentCategory();
@@ -579,7 +579,7 @@ class Finance extends MX_Controller {
             $data['patients'] = $this->patient_model->getPatient();
             $id = $this->input->get('id');
             $data['ot_payment'] = $this->finance_model->getOtPaymentById($id);
-            $data['doctors'] = $this->esteticista_model->getDoctor();
+            $data['esteticista'] = $this->esteticista_model->getEsteticista();
             $this->load->view('home/dashboard'); // just the header file
             $this->load->view('add_ot_payment', $data);
             $this->load->view('home/footer'); // just the footer file
@@ -633,7 +633,7 @@ class Finance extends MX_Controller {
         $data['discount_type'] = $this->finance_model->getDiscountType();
         $data['settings'] = $this->settings_model->getSettings();
         $data['categories'] = $this->finance_model->getPaymentCategory();
-        $data['doctors'] = $this->esteticista_model->getDoctor();
+        $data['esteticista'] = $this->esteticista_model->getEsteticista();
 
         $data['patient'] = $this->patient_model->getPatientById($id);
         if ($type == 'gen') {
@@ -1105,20 +1105,20 @@ class Finance extends MX_Controller {
         redirect("finance/otInvoice?id=" . "$id");
     }
 
-    function doctorsCommission() {
+    function esteticistaCommission() {
         $date_from = strtotime($this->input->post('date_from'));
         $date_to = strtotime($this->input->post('date_to'));
         if (!empty($date_to)) {
             $date_to = $date_to + 86399;
         }
-        $data['doctors'] = $this->esteticista_model->getDoctor();
+        $data['esteticista'] = $this->esteticista_model->getEsteticista();
         $data['payments'] = $this->finance_model->getPaymentByDate($date_from, $date_to);
         $data['ot_payments'] = $this->finance_model->getOtPaymentByDate($date_from, $date_to);
         $data['settings'] = $this->settings_model->getSettings();
         $data['from'] = $this->input->post('date_from');
         $data['to'] = $this->input->post('date_to');
         $this->load->view('home/dashboard'); // just the header file
-        $this->load->view('doctors_commission', $data);
+        $this->load->view('esteticista_commission', $data);
         $this->load->view('home/footer'); // just the footer fi
     }
 
@@ -1406,7 +1406,7 @@ class Finance extends MX_Controller {
                 $options3 = '<a class="btn btn-info btn-xs delete_button" title="' . lang('delete') . '" href="finance/delete?id=' . $payment->id . '" onclick="return confirm(\'Are you sure you want to delete this item?\');"><i class="fa fa-trash-o"></i>' . lang('delete') . '</a>';
             }
 
-            $doctor_details = $this->esteticista_model->getDoctorById($payment->doctor);
+            $doctor_details = $this->esteticista_model->getEsteticistaById($payment->doctor);
 
             if (!empty($doctor_details)) {
                 $doctor = $doctor_details->name;

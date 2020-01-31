@@ -70,30 +70,19 @@
             <div class="modal-body">
                 <form role="form" action="patient/addNew" method="post" enctype="multipart/form-data">
                     <div class="form-group">
-                        <div class="col-md-12">     
-                            <div class="col-md-3">
-                            </div>
-                            <div class="col-md-6">
-                                <div class="col-md-3 payment_label"> 
-                                    <label for="exampleInputEmail1"><?php echo lang('esteticista'); ?></label>
-                                </div>
-                                <div class="col-md-9"> 
-                                    <select class="form-control m-bot15" name="doctor" value=''> 
-                                        <?php foreach ($doctors as $doctor) { ?>
-                                            <option value="<?php echo $doctor->name; ?>" <?php
-                                            if (!empty($patient->doctor)) {
-                                                if ($patient->doctor == $doctor->name) {
-                                                    echo 'selected';
-                                                }
-                                            }
-                                            ?> ><?php echo $doctor->name; ?> </option>
-                                                <?php } ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                            </div>
-                        </div>
+                            <label for="exampleInputEmail1"><?php echo lang('esteticista'); ?></label>
+                            <select class="form-control m-bot15" name="esteticista" value=''> 
+                                    <option> </option>
+                                <?php foreach ($esteticista as $esteticistas) { ?>
+                                    <option value="<?php echo $esteticistas->name; ?>" <?php
+                                    if (!empty($patient->esteticista)) {
+                                        if ($patient->esteticista == $esteticistas->name) {
+                                            echo 'selected';
+                                        }
+                                    }
+                                    ?> ><?php echo $esteticistas->name; ?> </option>
+                                        <?php } ?>
+                            </select>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1"><?php echo lang('name'); ?></label>

@@ -70,7 +70,7 @@ $lang['log_out'] = 'Cerrar sesión';
 
 
 //sidebar
-$lang['dashboard'] = 'Tablero';
+$lang['dashboard'] = 'Inicio';
 $lang['all_hospitals'] = 'Actividades financieras';
 $lang['create_new_hospital'] = 'Ajustes';
 
@@ -314,7 +314,7 @@ $lang['bill_to'] = 'Cobrar a';
 
 $lang['patient'] = 'Paciente';
 
-$lang['refd_by_doctor'] = 'Remitido por el médico';
+$lang['refd_by_esteticista'] = 'Remitido por el médico';
 
 $lang['date'] = 'Fecha';
 
