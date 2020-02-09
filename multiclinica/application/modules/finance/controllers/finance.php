@@ -1410,6 +1410,8 @@ class Finance extends MX_Controller {
 
             if (!empty($doctor_details)) {
                 $doctor = $doctor_details->name;
+
+                
             } else {
                 if (!empty($payment->doctor_name)) {
                     $doctor = $payment->doctor_name;

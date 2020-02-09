@@ -1,0 +1,49 @@
+
+credenciales 
+
+mysql 
+user: root
+password: qwerty$$%%251996DANIEL
+
+phpmyadmin
+user: root
+password: qwerty$$%%251996DANIEL
+
+user ubuntu
+user: root || daniel
+password: luedy13+ || Uae2017+
+
+nutrifux
+
+user: root
+password: systema_nutrifux$$%%2020
+
+
+
+NURIFUX
+
+
+
+user ubuntu
+user: deicon
+password: uae2020DEICON
+
+mysql
+password: qwerty$$%%2020tade
+
+user: root
+password: qwerty$$%%2020ROOT
+
+clave ssh github nutrifux
+ssh-keygen: system_nutrifux
+password: luedy13+
+
+phpmyadmin
+username: system_nutrifux
+password: $$%%RESTnutrifux2020
+
+
+Se tiene que iniciar el agente ssh 
+	eval $(ssh-agent -s)
+	ahora ya podemos realizar el pull y push
+

@@ -1,0 +1,10 @@
+
+Roles	Username	Password
+Admin	admin@dms.com	12345
+Doctor	doctor@dms.com	12345
+enfermera	enfermera@dms.com	12345
+Farmacéutico	farmaceutico@dms.com	12345
+Contador	contador@dms.com	12345
+Paciente	paciente@dms.com	12345
+Laboratorista	laboratorista@dms.com	12345
+Recepcionista	recepcionista@dms.com	12345
